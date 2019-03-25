@@ -210,7 +210,7 @@ public class TableObject implements Serializable {
 
         for (TableObject entity: tableObjectList) {
             if (entity.quantity.toString().equals(paramOfFilter)){
-                filteredSku = filteredSku.concat(entity.quantity.toString());
+                filteredSku = filteredSku.concat(entity.sKU.toString());
             }
         }
         return filteredSku;
