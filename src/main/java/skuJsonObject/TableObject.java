@@ -205,7 +205,7 @@ public class TableObject implements Serializable {
         return this;
     }
 
-    public String quantityFilterScu(List<TableObject> tableObjectList, String paramOfFilter){
+    public String getFilteredListByQuantity(List<TableObject> tableObjectList, String paramOfFilter){
         String filteredSku = "";
 
         for (TableObject entity: tableObjectList) {
@@ -231,7 +231,7 @@ public class TableObject implements Serializable {
         if (other == this) {
             return true;
         }
-        if ((other instanceof TableObject) == false) {
+        if (!(other instanceof TableObject)) {
             return false;
         }
         TableObject rhs = ((TableObject) other);

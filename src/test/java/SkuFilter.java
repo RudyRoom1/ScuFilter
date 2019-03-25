@@ -18,7 +18,7 @@ public class SkuFilter {
         List<String> parsedList = url.getListOfSkuWithLenght(list, 50);
         List<String> urlList = url.getCreatedUrl(BasedUrls.BASE_URL_UAT, PathSegment.PRICE_AVAILABILITY, parsedList, UrlParams.BANNER_CTR, UrlParams.IS_KIOSK, UrlParams.LANGUAGE_ENGLISH, UrlParams.STORE_0987);
         List<TableObject> filteredList = url.httpGetRequest(urlList);
-        String filteredData = tableObject.quantityFilterScu(filteredList, "0");
+        String filteredData = tableObject.getFilteredListByQuantity(filteredList, "0");
 
 
         //        ArrayList<String> table1 = FileWork.readingFile("C:\\Users\\Yaros\\Desktop\\CTC\\mobc.txt");

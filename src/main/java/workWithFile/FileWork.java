@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class FileWork {
 
     public static ArrayList<String> readingFile(String pathToFile) {
-        ArrayList<String> arr = new ArrayList<String>();
+        ArrayList<String> arr = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(pathToFile))) {
             String sCurrentLine;
 
@@ -41,7 +41,7 @@ public class FileWork {
 
     public static List<String> getFilteredData(ArrayList<String> listOfLines, String regex) {
 
-        ArrayList<String> skuLists = new ArrayList<String>();
+        ArrayList<String> skuLists = new ArrayList<>();
 
         Predicate<String> linesFilter = Pattern
                 .compile(regex)
@@ -53,7 +53,7 @@ public class FileWork {
                 .collect(Collectors.toList());
 
         for (String s : desiredLines) {
-            skuLists.add(s.substring(0, s.indexOf(' '))+"\n");
+            skuLists.add(s.substring(0, s.indexOf(' ')));
         }
         return skuLists;
     }

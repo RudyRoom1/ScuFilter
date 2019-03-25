@@ -4,6 +4,7 @@ import Enums.BasedUrls;
 import Enums.PathSegment;
 import Enums.UrlParams;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jayway.restassured.response.Response;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -25,7 +26,7 @@ public class SkuUrl {
     private SkuUrl param;
 
     private static String addCountOfItemsToList(int count, List<String> skuList) {
-        List sku = skuList.subList(0, count);
+        List<String> sku = skuList.subList(0, count);
         String finalSku = String.join(",", sku);
         sku.clear();
         return finalSku;
@@ -52,8 +53,8 @@ public class SkuUrl {
         return listOfUrls;
     }
 
-    public List<String> getListOfSkuWithLenght(List skuList, int lenghtOfSublist) {
-        List<String> listOfFiftyItemInElem = new ArrayList<String>();
+    public List<String> getListOfSkuWithLenght(List<String> skuList, int lenghtOfSublist) {
+        List<String> listOfFiftyItemInElem = new ArrayList<>();
         do {
             int sizeOfList = skuList.size();
             listOfFiftyItemInElem.add(sizeOfList >= lenghtOfSublist ?
@@ -70,8 +71,9 @@ public class SkuUrl {
                 Response response = given().get(url).thenReturn();
                 String jsonResponse = response.body().asString();
                 if (jsonResponse.startsWith("[")) {
-                    objectList.add(new Gson()
-                            .fromJson(jsonResponse, (Type) TableObject[].class));
+                    Type listType = new TypeToken<List<TableObject>>() {}.getType();
+                    objectList.addAll(new Gson()
+                            .fromJson(jsonResponse, listType));
                 } else {
                     objectList.add(new Gson()
                             .fromJson(jsonResponse, (Type) TableObject.class));
