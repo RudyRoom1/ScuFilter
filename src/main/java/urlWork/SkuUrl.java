@@ -64,14 +64,15 @@ public class SkuUrl {
         return listOfFiftyItemInElem;
     }
 
-    public List<TableObject> httpGetRequest(List<String> urls) {
+    public List<TableObject> getHttpRequest(List<String> urls) {
         List<TableObject> objectList = new ArrayList<>();
         try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
             for (String url : urls) {
                 Response response = given().get(url).thenReturn();
                 String jsonResponse = response.body().asString();
                 if (jsonResponse.startsWith("[")) {
-                    Type listType = new TypeToken<List<TableObject>>() {}.getType();
+                    Type listType = new TypeToken<List<TableObject>>() {
+                    }.getType();
                     objectList.addAll(new Gson()
                             .fromJson(jsonResponse, listType));
                 } else {
@@ -86,7 +87,7 @@ public class SkuUrl {
 }
 
 
-//    public <T> T httpGetRequest(List<String> urls, Object object) {
+//    public <T> T getHttpRequest(List<String> urls, Object object) {
 //        List<Object> objectList = new ArrayList<>();
 //        try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
 //

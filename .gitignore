@@ -17,3 +17,5 @@ ScuFilter.iml
 .idea/encodings.xml
 .idea/dictionaries/Yaros.xml
 .idea/compiler.xml
+target/classes/META-INF/ScuFilter.kotlin_module
+target/classes/urlWork/SkuUrl$1.class

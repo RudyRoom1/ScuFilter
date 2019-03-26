@@ -1,9 +1,6 @@
 package workWithFile;
 
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -28,13 +25,12 @@ public class FileWork {
     }
 
     public static void writeToFile(String skuList, String path) {
-
-        try (FileOutputStream fos = new FileOutputStream(path)) {
-            byte[] buffer = skuList.getBytes();
-            fos.write(buffer, 0, buffer.length);
-        } catch (IOException ex) {
-
-            System.out.println(ex.getMessage());
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            writer.write(skuList);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         System.out.println("The file has been written");
     }
@@ -58,9 +54,9 @@ public class FileWork {
         return skuLists;
     }
 
-    public void readSortWriteFile(String inputPath, String outputPath, ArrayList<String> listOfLines, String regex){
+    public void readSortWriteFile(String inputPath, String outputPath, ArrayList<String> listOfLines, String regex) {
         readingFile(inputPath);
-        getFilteredData(listOfLines,regex);
-        writeToFile(listOfLines.toString(),outputPath);
+        getFilteredData(listOfLines, regex);
+        writeToFile(listOfLines.toString(), outputPath);
     }
 }

@@ -7,6 +7,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TableObject implements Serializable {
@@ -206,14 +207,14 @@ public class TableObject implements Serializable {
     }
 
     public String getFilteredListByQuantity(List<TableObject> tableObjectList, String paramOfFilter){
-        String filteredSku = "";
+        List<String> filteredSku = new ArrayList<>();
 
         for (TableObject entity: tableObjectList) {
-            if (entity.quantity.toString().equals(paramOfFilter)){
-                filteredSku = filteredSku.concat(entity.sKU.toString());
+            if (entity.getQuantity().toString().equals(paramOfFilter)){
+                filteredSku.add(entity.getSKU());
             }
         }
-        return filteredSku;
+        return String.join(",\n", filteredSku);
     }
 
     @Override
