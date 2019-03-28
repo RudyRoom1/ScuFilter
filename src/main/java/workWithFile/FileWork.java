@@ -48,10 +48,7 @@ public class FileWork {
                 .filter(linesFilter)
                 .collect(Collectors.toList());
 
-        for (String s : desiredLines) {
-            skuLists.add(s.substring(0, s.indexOf(' ')));
-        }
-        return skuLists;
+        return desiredLines.stream().map(desiredLine -> desiredLine.substring(0, desiredLine.indexOf(' '))).collect(Collectors.toList());
     }
 
     public void readSortWriteFile(String inputPath, String outputPath, ArrayList<String> listOfLines, String regex) {

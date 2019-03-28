@@ -25,7 +25,7 @@ public class SkuUrl {
 
     private SkuUrl param;
 
-    private static String addCountOfItemsToList(int count, List<String> skuList) {
+    private static String addItemsToList(int count, List<String> skuList) {
         List<String> sku = skuList.subList(0, count);
         String finalSku = String.join(",", sku);
         sku.clear();
@@ -58,8 +58,8 @@ public class SkuUrl {
         do {
             int sizeOfList = skuList.size();
             listOfFiftyItemInElem.add(sizeOfList >= lenghtOfSublist ?
-                    SkuUrl.addCountOfItemsToList(lenghtOfSublist, skuList) :
-                    SkuUrl.addCountOfItemsToList(sizeOfList, skuList));
+                    SkuUrl.addItemsToList(lenghtOfSublist, skuList) :
+                    SkuUrl.addItemsToList(sizeOfList, skuList));
         } while (!skuList.isEmpty());
         return listOfFiftyItemInElem;
     }
